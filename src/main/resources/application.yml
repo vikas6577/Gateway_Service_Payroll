@@ -10,20 +10,15 @@ spring:
         - id: EMPLOYEE-SERVICE
           uri: lb://EMPLOYEE-SERVICE
           predicates:
-            - Path=/api/v1/**
-            - Path=/api/v1/employee/**
-
+            - Path=/api/v1/allData,/api/v1/employee/**
         - id: COMPENSATION-SERVICE
           uri: lb://COMPENSATION-SERVICE
           predicates:
-            - Path=/api/v1/**
-            - Path=/api/v1/leaves/**
-            - Path=/api/v1/salaries/**
-
+            - Path=/api/v1/leaves/**,/api/v1/salaries/**
         - id: AUTH-SERVICE
           uri: lb://AUTH-SERVICE
           predicates:
-            - Path=/api/v1/**
+            - Path=/api/v1/login,/api/v1/validate
 
 eureka:
   client:
@@ -31,3 +26,7 @@ eureka:
       defaultZone: http://localhost:9000/eureka/
     register-with-eureka: true
     fetch-registry: true
+
+logging:
+  level:
+    org.springframework.security.web: DEBUG
